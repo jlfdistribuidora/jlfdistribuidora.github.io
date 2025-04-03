@@ -449,20 +449,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             const images = document.querySelectorAll('img[data-src]');
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '';
-            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
 
             images.forEach(img => {
                 let url = img.getAttribute('data-src');
                 
-                // Si es entorno local, usa la carpeta images/
+                // Entorno local: usa la carpeta images/
                 if (isLocal) {
                     const fileName = url.split('/').pop();
                     url = `images/${fileName}`;
                     img.src = url; // Carga directa para local
                 } 
-                // Si es entorno subido, usa el proxy para HTTP
+                // Entorno subido: usa el proxy para HTTP
                 else {
-                    url = proxyUrl + url; // Envuelve la URL HTTP con el proxy
+                    url = proxyUrl + encodeURIComponent(url); // Envuelve la URL HTTP con el proxy
                     fetch(url)
                         .then(response => {
                             if (!response.ok) throw new Error('Network response was not ok');
