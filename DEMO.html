@@ -251,6 +251,111 @@
             font-size: 40px;
             margin: 10px 0;
         }
+
+        /* Estilos del Modal del Carrito */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cart-content h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 24px;
+            padding-right: 40px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .delivery-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .delivery-details h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+
+        .delivery-details label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .delivery-details input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .confirm-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background-color: #219653;
+        }
     </style>
 </head>
 <body>
@@ -301,78 +406,512 @@
         </div>
 
         <div class="products" id="productList">
-            <!-- Aquí van los productos existentes (se omiten por brevedad) -->
-            <!-- Puedes copiar y pegar los productos de tu código original aquí -->
-        </div>
-
-        <div class="footer">
-            <div class="footer-content">
-                <div class="footer-row">
-                    <span class="footer-name">Ing. Pablo Ez. Moscardo</span> •
-                    <span>Desarrollo de Softwares Empresariales y Pymes a Medida</span> •
-                    <span>Rafaela, Santa Fe</span> •
-                    <span>Tel: +54 9 3492640293</span>
-                </div>
-                <div class="footer-row copyright">
-                    © 2025 Todos los derechos reservados • Marca Registrada ®
+            <div class="product">
+                <img src="images/049.jpg" alt="ACEITUNA CON CAROZO 1 ESTRENO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/049.jpg'">
+                <div class="product-content">
+                    <h3>ACEITUNA CON CAROZO 1 ESTRENO</h3>
+                    <p>Código: 049</p>
+                    <span class="price">10750.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="049" data-name="ACEITUNA CON CAROZO 1 ESTRENO" data-price="10750.0">Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Popup de Oferta de la Semana -->
-    <div class="popup" id="offerPopup">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">×</button>
-            <h2>¡Oferta de la Semana! 🎉</h2>
-            <p>🍕 <strong>Pre Pizza x2 Sabor y Arte</strong></p>
-            <p>¡Solo esta semana, llevate este increíble producto a un precio especial!</p>
-            <p class="offer-price">Antes: $2215 - Ahora: $1999 🔥</p>
-            <p>⏳ ¡Aprovechá antes de que se acabe!</p>
-            <div class="emoji">🎁</div>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal" style="
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.7);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-    ">
-        <!-- Contenido del carrito (se omite por brevedad, usar el original) -->
-    </div>
-
-    <script>
-        // Mostrar el popup al cargar la página
-        window.onload = function() {
-            document.getElementById('offerPopup').style.display = 'flex';
-        };
-
-        // Cerrar el popup
-        function closePopup() {
-            document.getElementById('offerPopup').style.display = 'none';
-        }
-
-        // Variables del carrito
-        const cartButton = document.getElementById('cartButton');
-        const cartCounter = document.getElementById('cartCounter');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        let cart = [];
-        
-        // Aquí va el resto del script original (se omite por brevedad)
-        // Incluye las funciones: updateCartDisplay, openCart, closeCart, removeItem, confirmOrder
-        // y los event listeners existentes
-
-        // Para mantener la funcionalidad completa, copia el script original desde:
-        // const cartButton = document.getElementById('cartButton'); 
-        // hasta el final del script
-    </script>
-</body>
-</html>
+            <div class="product">
+                <img src="images/050.jpg" alt="ACEITUNA DESCAROZADAS ESTRENO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/050.jpg'">
+                <div class="product-content">
+                    <h3>ACEITUNA DESCAROZADAS ESTRENO</h3>
+                    <p>Código: 050</p>
+                    <span class="price">13700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="050" data-name="ACEITUNA DESCAROZADAS ESTRENO" data-price="13700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/051.jpg" alt="ACEITUNA FETEADA DON ILMO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/051.jpg'">
+                <div class="product-content">
+                    <h3>ACEITUNA FETEADA DON ILMO</h3>
+                    <p>Código: 051</p>
+                    <span class="price">13600.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="051" data-name="ACEITUNA FETEADA DON ILMO" data-price="13600.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/aceituna-negra.jpg" alt="ACEITUNAS NEGRAS" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/aceituna-negra.jpg'">
+                <div class="product-content">
+                    <h3>ACEITUNAS NEGRAS</h3>
+                    <p>Código: 048</p>
+                    <span class="price">15700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="048" data-name="ACEITUNAS NEGRAS" data-price="15700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/descarga.jpg" alt="DULCE BATATA CAROYENSE" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/descarga.jpg'">
+                <div class="product-content">
+                    <h3>DULCE BATATA CAROYENSE</h3>
+                    <p>Código: 059</p>
+                    <span class="price">4850.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="059" data-name="DULCE BATATA CAROYENSE" data-price="4850.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/dulcebatatachocolate.jpg" alt="DULCE BATATA CON CHOCOLATE EMETH" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/dulcebatatachocolate.jpg'">
+                <div class="product-content">
+                    <h3>DULCE BATATA CON CHOCOLATE EMETH</h3>
+                    <p>Código: 060</p>
+                    <span class="price">9700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="060" data-name="DULCE BATATA CON CHOCOLATE EMETH" data-price="9700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/images.jpg" alt="DULCE DE LECHE PASCUALITA FAMILIAR" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/images.jpg'">
+                <div class="product-content">
+                    <h3>DULCE DE LECHE PASCUALITA FAMILIAR</h3>
+                    <p>Código: 055</p>
+                    <span class="price">4900.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="055" data-name="DULCE DE LECHE PASCUALITA FAMILIAR" data-price="4900.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/3-0000_th.png" alt="DULCE DE LECHE PASCUALITA REPOSTERO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/3-0000_th.png'">
+                <div class="product-content">
+                    <h3>DULCE DE LECHE PASCUALITA REPOSTERO</h3>
+                    <p>Código: 056</p>
+                    <span class="price">11300.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="056" data-name="DULCE DE LECHE PASCUALITA REPOSTERO" data-price="11300.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/porque-bg.png" alt="DULCE DE LECHE REPOSTERO PASCUALITA" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/porque-bg.png'">
+                <div class="product-content">
+                    <h3>DULCE DE LECHE REPOSTERO PASCUALITA</h3>
+                    <p>Código: 057</p>
+                    <span class="price">19300.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="057" data-name="DULCE DE LECHE REPOSTERO PASCUALITA" data-price="19300.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/DULCE DE LECHE X 200 ILOLAY.jpg" alt="DULCE DE LECHE X 200 ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/DULCE DE LECHE X 200 ILOLAY.jpg'">
+                <div class="product-content">
+                    <h3>DULCE DE LECHE X 200 ILOLAY</h3>
+                    <p>Código: 053</p>
+                    <span class="price">1189.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="053" data-name="DULCE DE LECHE X 200 ILOLAY" data-price="1189.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/DDL-Ilolay-Clasico-405gr.png" alt="DULCE DE LECHE X400 ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/DDL-Ilolay-Clasico-405gr.png'">
+                <div class="product-content">
+                    <h3>DULCE DE LECHE X400 ILOLAY</h3>
+                    <p>Código: 054</p>
+                    <span class="price">2162.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="054" data-name="DULCE DE LECHE X400 ILOLAY" data-price="2162.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/DULCE MEMBRILLO CAROYENSE.png" alt="DULCE MEMBRILLO CAROYENSE" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/DULCE MEMBRILLO CAROYENSE.png'">
+                <div class="product-content">
+                    <h3>DULCE MEMBRILLO CAROYENSE</h3>
+                    <p>Código: 058</p>
+                    <span class="price">6000.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="058" data-name="DULCE MEMBRILLO CAROYENSE" data-price="6000.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/FIDEOS CHANUVI HUEVO ESPINACA MORRON.jpg" alt="FIDEOS CHANUVI HUEVO/ESPINACA/MORRON" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/FIDEOS CHANUVI HUEVO ESPINACA MORRON.jpg'">
+                <div class="product-content">
+                    <h3>FIDEOS CHANUVI HUEVO/ESPINACA/MORRON</h3>
+                    <p>Código: 068</p>
+                    <span class="price">1180.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="068" data-name="FIDEOS CHANUVI HUEVO/ESPINACA/MORRON" data-price="1180.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/GRASA-LARIO-X-1-Kg.png" alt="GRASA VACUNA LARIO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/GRASA-LARIO-X-1-Kg.png'">
+                <div class="product-content">
+                    <h3>GRASA VACUNA LARIO</h3>
+                    <p>Código: 063</p>
+                    <span class="price">2527.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="063" data-name="GRASA VACUNA LARIO" data-price="2527.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/LECHE DESCREMADA X 1LT ILOLAYjpg.jpg" alt="LECHE DESCREMADA X 1LT ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/LECHE DESCREMADA X 1LT ILOLAYjpg.jpg'">
+                <div class="product-content">
+                    <h3>LECHE DESCREMADA X 1LT ILOLAY</h3>
+                    <p>Código: 062</p>
+                    <span class="price">1530.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="062" data-name="LECHE DESCREMADA X 1LT ILOLAY" data-price="1530.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/Leche-Ilolay-Entera-Nueva-Larga-Vida-1Lt.png" alt="LECHE ENTERA X 1 LT ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/Leche-Ilolay-Entera-Nueva-Larga-Vida-1Lt.png'">
+                <div class="product-content">
+                    <h3>LECHE ENTERA X 1 LT ILOLAY</h3>
+                    <p>Código: 061</p>
+                    <span class="price">1530.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="061" data-name="LECHE ENTERA X 1 LT ILOLAY" data-price="1530.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/99570_mayonesaprecursor2900cc.jpg" alt="MAYONESA PRECURSOR" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/99570_mayonesaprecursor2900cc.jpg'">
+                <div class="product-content">
+                    <h3>MAYONESA PRECURSOR</h3>
+                    <p>Código: 069</p>
+                    <span class="price">6300.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="069" data-name="MAYONESA PRECURSOR" data-price="6300.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PAN MIGA SABOR Y ARTE.jpg" alt="PAN MIGA SABOR Y ARTE" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PAN MIGA SABOR Y ARTE.jpg'">
+                <div class="product-content">
+                    <h3>PAN MIGA SABOR Y ARTE</h3>
+                    <p>Código: 103</p>
+                    <span class="price">2000.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="103" data-name="PAN MIGA SABOR Y ARTE" data-price="2000.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/052.jpg" alt="PICKLES ESTRENO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/052.jpg'">
+                <div class="product-content">
+                    <h3>PICKLES ESTRENO</h3>
+                    <p>Código: 052</p>
+                    <span class="price">7600.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="052" data-name="PICKLES ESTRENO" data-price="7600.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PRE PIZZA X1 UND SABOR Y ARTE.jpg" alt="PRE PIZZA X1 UND SABOR Y ARTE" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PRE PIZZA X1 UND SABOR Y ARTE.jpg'">
+                <div class="product-content">
+                    <h3>PRE PIZZA X1 UND SABOR Y ARTE</h3>
+                    <p>Código: 101</p>
+                    <span class="price">1370.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="101" data-name="PRE PIZZA X1 UND SABOR Y ARTE" data-price="1370.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PRE PIZZA X1 UND SABOR Y ARTE.jpg" alt="PRE PIZZA X2 UND SABOR Y ARTE" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PRE PIZZA X1 UND SABOR Y ARTE.jpg'">
+                <div class="product-content">
+                    <h3>PRE PIZZA X2 UND SABOR Y ARTE</h3>
+                    <p>Código: 102</p>
+                    <span class="price">2215.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="102" data-name="PRE PIZZA X2 UND SABOR Y ARTE" data-price="2215.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/QUESO RALLADO LA QUESERA X 40 GRS.jpg" alt="QUESO RALLADO LA QUESERA X 40 GRS" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/QUESO RALLADO LA QUESERA X 40 GRS.jpg'">
+                <div class="product-content">
+                    <h3>QUESO RALLADO LA QUESERA X 40 GRS</h3>
+                    <p>Código: 064</p>
+                    <span class="price">668.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="064" data-name="QUESO RALLADO LA QUESERA X 40 GRS" data-price="668.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/QUESO RALLADO X 100 GRS LA QUESERA.png" alt="QUESO RALLADO X 100 GRS LA QUESERA" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/QUESO RALLADO X 100 GRS LA QUESERA.png'">
+                <div class="product-content">
+                    <h3>QUESO RALLADO X 100 GRS LA QUESERA</h3>
+                    <p>Código: 065</p>
+                    <span class="price">1573.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="065" data-name="QUESO RALLADO X 100 GRS LA QUESERA" data-price="1573.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/QUESO RALLADO X 120 ILOLAY.jpg" alt="QUESO RALLADO X 120 ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/QUESO RALLADO X 120 ILOLAY.jpg'">
+                <div class="product-content">
+                    <h3>QUESO RALLADO X 120 ILOLAY</h3>
+                    <p>Código: 067</p>
+                    <span class="price">3044.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="067" data-name="QUESO RALLADO X 120 ILOLAY" data-price="3044.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/QUESO RALLADO X 40 ILOLAY.png" alt="QUESO RALLADO X 40 ILOLAY" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/QUESO RALLADO X 40 ILOLAY.png'">
+                <div class="product-content">
+                    <h3>QUESO RALLADO X 40 ILOLAY</h3>
+                    <p>Código: 066</p>
+                    <span class="price">1104.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="066" data-name="QUESO RALLADO X 40 ILOLAY" data-price="1104.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/BONDIOLA ARTESANAL LA MARTINA.jpg" alt="BONDIOLA ARTESANAL LA MARTINA" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/BONDIOLA ARTESANAL LA MARTINA.jpg'">
+                <div class="product-content">
+                    <h3>BONDIOLA ARTESANAL LA MARTINA</h3>
+                    <p>Código: 029</p>
+                    <span class="price">17300.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="029" data-name="BONDIOLA ARTESANAL LA MARTINA" data-price="17300.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/BONDIOLA LARIO.png" alt="BONDIOLA LARIO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/BONDIOLA LARIO.png'">
+                <div class="product-content">
+                    <h3>BONDIOLA LARIO</h3>
+                    <p>Código: 040</p>
+                    <span class="price">20706.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="040" data-name="BONDIOLA LARIO" data-price="20706.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/JAMON COCIDO LARIO.jpg" alt="JAMON COCIDO LARIO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/JAMON COCIDO LARIO.jpg'">
+                <div class="product-content">
+                    <h3>JAMON COCIDO LARIO</h3>
+                    <p>Código: 044</p>
+                    <span class="price">11355.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="044" data-name="JAMON COCIDO LARIO" data-price="11355.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/JAMON COCIDO WEBER.jpg" alt="JAMON COCIDO WEBER" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/JAMON COCIDO WEBER.jpg'">
+                <div class="product-content">
+                    <h3>JAMON COCIDO WEBER</h3>
+                    <p>Código: 027</p>
+                    <span class="price">5075.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="027" data-name="JAMON COCIDO WEBER" data-price="5075.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/JAMON CRUDO WEBER.jpg" alt="JAMON CRUDO WEBER" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/JAMON CRUDO WEBER.jpg'">
+                <div class="product-content">
+                    <h3>JAMON CRUDO WEBER</h3>
+                    <p>Código: 028</p>
+                    <span class="price">15000.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="028" data-name="JAMON CRUDO WEBER" data-price="15000.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/jamon-cocido-feteado-welschen-alimentos-frescos-casa-segal-mendoza.jpg" alt="JAMON WELCHEN" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/jamon-cocido-feteado-welschen-alimentos-frescos-casa-segal-mendoza.jpg'">
+                <div class="product-content">
+                    <h3>JAMON WELCHEN</h3>
+                    <p>Código: 026</p>
+                    <span class="price">5700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="026" data-name="JAMON WELCHEN" data-price="5700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/LEBER GAZANO.png" alt="LEBER GAZANO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/LEBER GAZANO.png'">
+                <div class="product-content">
+                    <h3>LEBER GAZANO</h3>
+                    <p>Código: 033</p>
+                    <span class="price">6850.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="033" data-name="LEBER GAZANO" data-price="6850.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/MORTADELA LARIO.png" alt="MORTADELA LARIO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/MORTADELA LARIO.png'">
+                <div class="product-content">
+                    <h3>MORTADELA LARIO</h3>
+                    <p>Código: 042</p>
+                    <span class="price">6262.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="042" data-name="MORTADELA LARIO" data-price="6262.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/Nelson.jpg" alt="MORTADELA SUR NELSON" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/Nelson.jpg'">
+                <div class="product-content">
+                    <h3>MORTADELA SUR NELSON</h3>
+                    <p>Código: 032</p>
+                    <span class="price">3700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="032" data-name="MORTADELA SUR NELSON" data-price="3700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PALETA COCIDA LARIO.png" alt="PALETA COCIDA LARIO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PALETA COCIDA LARIO.png'">
+                <div class="product-content">
+                    <h3>PALETA COCIDA LARIO</h3>
+                    <p>Código: 043</p>
+                    <span class="price">8349.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="043" data-name="PALETA COCIDA LARIO" data-price="8349.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PALETA WELCHEN.jpg" alt="PALETA WELCHEN" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PALETA WELCHEN.jpg'">
+                <div class="product-content">
+                    <h3>PALETA WELCHEN</h3>
+                    <p>Código: 025</p>
+                    <span class="price">4000.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="025" data-name="PALETA WELCHEN" data-price="4000.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/PANCETA ARROLLADA LA MARTINA.jpg" alt="PANCETA ARROLLADA LA MARTINA" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/PANCETA ARROLLADA LA MARTINA.jpg'">
+                <div class="product-content">
+                    <h3>PANCETA ARROLLADA LA MARTINA</h3>
+                    <p>Código: 030</p>
+                    <span class="price">17300.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="030" data-name="PANCETA ARROLLADA LA MARTINA" data-price="17300.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/QUESO CERDO GAZANO.jpg" alt="QUESO CERDO GAZANO" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/QUESO CERDO GAZANO.jpg'">
+                <div class="product-content">
+                    <h3>QUESO CERDO GAZANO</h3>
+                    <p>Código: 106</p>
+                    <span class="price">6700.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="106" data-name="QUESO CERDO GAZANO" data-price="6700.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/SALAME CRESPON.jpg" alt="SALAME CRESPON" onerror="this.src='http://seistriple8v1.emiweb.es/medias/images/SALAME CRESPON.jpg'">
+                <div class="product-content">
+                    <h3>SALAME CRESPON</h3>
+                    <p>Código: 039</p>
+                    <span class="price">17200.0</span>
+                    <span class="wholesale-price" style="display: block; color: #e67e22; font-size: 16px; margin-top: 5px;">Precio Mayorista: N/A</span>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" min="1" value="1" style="width: 60px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+                        <button class="add-to-cart" style="background-color: #2ecc71; color: white; border: none; border-radius: 4px; padding: 8px 15px; cursor: pointer; font-size: 14px; flex-grow: 1;" data-code="039" data-name="SALAME CRESPON" data-price="17200.0">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/SALAME METRO LARIO.jpg" alt="SALAME METRO LARIO" onerror="this
